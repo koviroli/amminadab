@@ -46,12 +46,14 @@
  */
 
 #include "nlp.hpp"
+#include <fstream>
 
 SPOTriplets NLP::sentence2triplets ( const char* sentence )
 {
 
   SPOTriplets triplets;
-
+  std::ofstream myfile;
+  myfile.open ("sentences", std::ofstream::out | std::ofstream::app);
   Sentence sent = sentence_create ( sentence, dict_ );
   sentence_split ( sent, parse_opts_ );
   int num_linkages = sentence_parse ( sent, parse_opts_ );
@@ -74,6 +76,7 @@ SPOTriplets NLP::sentence2triplets ( const char* sentence )
           const char *p = linkage_get_word ( linkage, k );
           if ( p )
             words.push_back ( p );
+	  
           else
             words.push_back ( "null" );
 
@@ -88,8 +91,10 @@ SPOTriplets NLP::sentence2triplets ( const char* sentence )
             {
 	      
               triplet.p = linkage_get_word ( linkage, k );
+	      
               alter_p = words[linkage_get_link_rword ( linkage, k )];
               triplet.s = words[linkage_get_link_lword ( linkage, k )];
+	    
 
             }
 
@@ -115,6 +120,7 @@ SPOTriplets NLP::sentence2triplets ( const char* sentence )
                   triplet.cut ( );
 
                   triplets.push_back ( triplet );
+		  myfile  << triplet.s.c_str() << " " << triplet.p.c_str() << " " << triplet.o.c_str() << std::endl;
 
                   ready = true;
                   break;
@@ -125,7 +131,6 @@ SPOTriplets NLP::sentence2triplets ( const char* sentence )
 
       linkage_delete ( linkage );
     }
-
   sentence_delete ( sent );
 
   return triplets;

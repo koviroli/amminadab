@@ -1,0 +1,38 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/koviroli/programming/prog2/harmadik_védés/KR-BI_Samu/amminadab/nlp.cpp
+nlp.hpp
+/home/koviroli/programming/prog2/harmadik_védés/KR-BI_Samu/amminadab/nlp.hpp
+fstream
+-
+
+/home/koviroli/programming/prog2/harmadik_védés/KR-BI_Samu/amminadab/nlp.hpp
+locale.h
+-
+stdio.h
+-
+link-grammar/link-includes.h
+/home/koviroli/programming/prog2/harmadik_védés/KR-BI_Samu/amminadab/link-grammar/link-includes.h
+string
+-
+vector
+-
+iostream
+-
+
+/usr/local/include/link-grammar/link-features.h
+
+/usr/local/include/link-grammar/link-includes.h
+stdbool.h
+-
+stdio.h
+-
+link-grammar/link-features.h
+-
+

@@ -53,8 +53,8 @@ project(SAMU)
 # #set(CUDA_LAYERS ON)
 # set(CUDA_LAYERS OFF)
 #
-# #set(DISP_CURSES ON)
-# set(DISP_CURSES OFF)
+# set(DISP_CURSES ON)
+# #set(DISP_CURSES OFF)
 
 # TUI
  #add_definitions(-DSUPER_OR_REMOTE_COMP)
@@ -67,17 +67,17 @@ project(SAMU)
 
 # Amminadab
 add_definitions(-DLZW_TREE)
-#add_definitions(-DNETCHAT)
+add_definitions(-DNETCHAT)
 
   
 # Ram
 add_definitions(-DINCREMENTAL_CACHE)
-add_definitions(-DCELL_AUTOMATA)
+#add_definitions(-DCELL_AUTOMATA)
 #add_definitions(-DFOUR_TIMES)
 #add_definitions(-DDRAW_WNUM)
 #add_definitions(-DPLACE_VALUE)
-#add_definitions(-DFEELINGS)
-#add_definitions(-DPRINTING_CHARBYCHAR)
+add_definitions(-DFEELINGS)
+add_definitions(-DPRINTING_CHARBYCHAR)
 add_definitions(-DSARSA)
 
 # Hezron 
