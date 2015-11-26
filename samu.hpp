@@ -61,6 +61,7 @@
 #include <queue>
 #include <cstdio>
 #include <cstring>
+#include <fstream>
 
 #include "nlp.hpp"
 #include "ql.hpp"
@@ -175,6 +176,9 @@ public:
         old_talk_id = id;
 
         SPOTriplets tv = nlp.sentence2triplets ( sentence.c_str() );
+	//myfile << "Uj mondat" << '\n';
+	
+	
 
 #ifndef INCREMENTAL_CACHE
         vi << tv;
@@ -213,6 +217,7 @@ public:
         old_talk_id = id;
 
         vi << nlp.sentence2triplets ( sentence.c_str() );
+	//myfile << sentence << '\n';
 
         msg_mutex.unlock();
 
@@ -221,7 +226,6 @@ public:
       {
         throw "My attention diverted elsewhere.";
       }
-
   }
 
   void triplet ( int id, SPOTriplets & triplets )

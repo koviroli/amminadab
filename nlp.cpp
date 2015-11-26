@@ -50,10 +50,10 @@
 
 SPOTriplets NLP::sentence2triplets ( const char* sentence )
 {
-
-  SPOTriplets triplets;
   std::ofstream myfile;
-  myfile.open ("sentences", std::ofstream::out | std::ofstream::app);
+  myfile.open ("sentences", std::ofstream::out | std::ofstream::app );
+  SPOTriplets triplets;
+
   Sentence sent = sentence_create ( sentence, dict_ );
   sentence_split ( sent, parse_opts_ );
   int num_linkages = sentence_parse ( sent, parse_opts_ );
@@ -132,6 +132,7 @@ SPOTriplets NLP::sentence2triplets ( const char* sentence )
       linkage_delete ( linkage );
     }
   sentence_delete ( sent );
+  myfile.close();
 
   return triplets;
 }

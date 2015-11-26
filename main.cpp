@@ -50,6 +50,7 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <fstream>
 #include <signal.h>
 #include "samu.hpp"
 
@@ -87,6 +88,7 @@ double to_samu ( int channel, SPOTriplets &tv )
     {
       std::cerr << err << std::endl;
     }
+
   return r;
 }
 
@@ -94,10 +96,13 @@ double to_samu ( int channel, SPOTriplets &tv )
 double to_samu ( int channel, std::string &msg )
 {
   double r {0.0};
+  std::ofstream myfile;
+  myfile.open("sentences");
 
   try
     {
       samu.sentence ( channel, msg );
+      myfile << "AAAAAAAAAAAAAAAAA" << '\n';
       r = samu.reward();
     }
   catch ( const char* err )
@@ -161,6 +166,8 @@ int main ( int argc, char **argv )
       samu.load ( samuFile );
   #endif
   */
+  std::ofstream myfile;
+  myfile.open("sentences", std::ofstream::out | std::ofstream::trunc);
 
   struct sigaction sa;
   sa.sa_handler = save_samu;
@@ -357,9 +364,9 @@ int main ( int argc, char **argv )
                           std::string file = key+".triplets";
                           for ( std::string line; std::getline ( train, line ) && samu.sleep(); )
                             {
-
+			      
 #ifndef TRIPLET_CACHE
-                              sum += to_samu ( 12, line );
+                              sum += to_samu ( 12, line );     
 #else
                               sum += to_samu ( 12, line, file );
 #endif
